@@ -1,0 +1,9 @@
+tensorflow
+python==3.9
+tensorflow-recommenders
+tensorflow-datasets
+numpy
+pandas
+streamlit
+matplotlib
+scann
