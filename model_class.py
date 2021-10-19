@@ -7,7 +7,7 @@ from utils import *
 ###########LOAD UNIQUE VALUES###############
 ############################################
 
-ratings, movies = load_dataset(dataset='100k')
+ratings, movies, ratings_df, movies_df = load_dataset(dataset='100k', dataframe_convert=True)
 
 user_ids, movie_titles, train_set, val_set, test_set = prepare_data(ratings, movies, data_size=size[0])
 
