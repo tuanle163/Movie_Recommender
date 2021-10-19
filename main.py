@@ -36,7 +36,7 @@ if __name__ == '__main__':
                 scores, titles = index(tf.constant([user_id]))
                 st.write(f'Movie Recommendation for {user_id}: {titles[0, :10]}')
 
-                movies_list = pd.DataFrame(titles.numpy().reshape(10), columns=['Movies List','Model Predict Rating Score'])
+                movies_list = pd.DataFrame(titles.numpy().reshape(10), columns=['Movies List'])
                 movies_list = movies_list['Movies List'].apply(extract_movie_title)
 
                 st.dataframe(movies_list)
