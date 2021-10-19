@@ -70,6 +70,8 @@ if __name__ == '__main__':
                 total_user_id += 1
                 st.write(f'The new user have an ID: {new_user_id}')
                 st.write(f'new total user id number: {total_user_id}')
+        with col2:
+            st.write('Please rate the movies!')
 
 
 
