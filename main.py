@@ -61,7 +61,8 @@ if __name__ == '__main__':
         st.write('')
 
         st.header('Please Input Your Information')
-        col1, col2 = st.column(2)
+
+        col1, col2 = st.columns(2)
         with col1:
             user_name = st.text_input('Please Enter your name:')
             
@@ -73,16 +74,6 @@ if __name__ == '__main__':
         with col2:
             st.write('Please rate the movies!')
 
-
-
-    
-    
-
-
-
-
-
-    
 
 
 
