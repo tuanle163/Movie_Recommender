@@ -4,11 +4,11 @@
 matplotlib
 numpy
 pandas
-python==3.9.0
+python
 scikit-learn
 scipy
 streamlit
-tensorflow==2.6.0
+tensorflow
 tensorboard
 tensorflow-datasets
 tensorflow-recommenders
