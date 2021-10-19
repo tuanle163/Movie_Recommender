@@ -15,6 +15,9 @@ loaded_metrics = model.evaluate(cached_test, return_dict=True)
 side_menu = ['For Return User','For New User','About the Recommender']
 choice = st.sidebar.selectbox('For Return User', side_menu)
 
+def extract_movie_title(row):
+    return str(row).split('\'')[1]
+
 if __name__ == '__main__':
 
     if choice=='For Return User':
@@ -30,21 +33,20 @@ if __name__ == '__main__':
             user_id = str(user_id)
             if search_algo==['ScaNN']:
                 index = search_algorithm(model, movies_dataset=movies, search_algo='ScaNN')
-                scann_scores, scann_titles = index(tf.constant([user_id]))
-                st.write(f'Movie Recommendation for {user_id}: {scann_titles[0, :10]}')
+                scores, titles = index(tf.constant([user_id]))
+                st.write(f'Movie Recommendation for {user_id}: {titles[0, :10]}')
+
+                movies_list = pd.DataFrame(titles.numpy().reshape(10), columns=['Movies List','Model Predict Rating Score'])
+                movies_list = movies_list['Movies List'].apply(extract_movie_title)
+
+                st.dataframe(movies_list)
 
             elif search_algo==['BruteForce']:
                 index = search_algorithm(model, movies_dataset=movies, search_algo='bruteForce')
                 bf_scores, bf_titles = index(tf.constant([user_id]))
                 st.write(f'Movie Recommendation for {user_id}: {bf_titles[0, :10]}')
 
-        
-
-        print('='*100)
-        print(f"Retrieval top-100 accuracy: {loaded_metrics['factorized_top_k/top_100_categorical_accuracy']:.3f}.")
-        print(f"Retrieval top-50 accuracy: {loaded_metrics['factorized_top_k/top_50_categorical_accuracy']:.3f}.")
-        print(f"Retrieval top-10 accuracy: {loaded_metrics['factorized_top_k/top_10_categorical_accuracy']:.3f}.")
-        print(f"Ranking RMSE: {loaded_metrics['root_mean_squared_error']:.3f}.")
+    
     
 
 
