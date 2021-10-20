@@ -51,7 +51,7 @@ if __name__ == '__main__':
                 print(s_movies_list)
                 st.dataframe(s_movies_list)
 
-            elif search_algo==['BruteForce']:
+            if search_algo==['BruteForce']:
                 bf_index = search_algorithm(model, movies_dataset=movies, search_algo='bruteForce')
                 bf_scores, bf_titles = bf_index(tf.constant([user_id]))
                 st.write(f'Movie Recommendation for user {user_id}')

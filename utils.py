@@ -69,8 +69,8 @@ def search_algorithm(model, movies_dataset, search_algo='bruteForce'):
         bf_index = tfrs.layers.factorized_top_k.BruteForce(model.user_model)
         bf_index.index_from_dataset(tf.data.Dataset.zip((movies_dataset.batch(128), movies_dataset.batch(128).map(model.movie_model))))
         return bf_index
-        
-    elif search_algo=='ScaNN':
+
+    if search_algo=='ScaNN':
         scann_index = tfrs.layers.factorized_top_k.ScaNN(model.user_model)
         scann_index.index_from_dataset(tf.data.Dataset.zip((movies_dataset.batch(128), movies_dataset.batch(128).map(model.movie_model))))
         return scann_index
