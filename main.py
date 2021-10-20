@@ -40,6 +40,7 @@ if __name__ == '__main__':
             st.write('Waiting for User ID input!')
         elif user_id != '':
             user_id = str(user_id)
+            
             if search_algo==['ScaNN']:
                 index = search_algorithm(model, movies_dataset=movies, search_algo='ScaNN')
                 scores, titles = index(tf.constant([user_id]))
@@ -47,6 +48,7 @@ if __name__ == '__main__':
 
                 movies_list = pd.DataFrame(titles.numpy().reshape(10), columns=['Movies List'])
                 movies_list = movies_list['Movies List'].apply(extract_movie_title)
+                st.dataframe(movies_list)
 
             elif search_algo==['BruteForce']:
                 index = search_algorithm(model, movies_dataset=movies, search_algo='bruteForce')
@@ -55,8 +57,8 @@ if __name__ == '__main__':
 
                 movies_list = pd.DataFrame(titles.numpy().reshape(10), columns=['Movies List'])
                 movies_list = movies_list['Movies List'].apply(extract_movie_title)
+                st.dataframe(movies_list)
             
-            st.dataframe(movies_list)
     
     elif choice=='For New User':
         st.title('Welcome to Movie Recommenders!!!')
