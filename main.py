@@ -42,22 +42,22 @@ if __name__ == '__main__':
             user_id = str(user_id)
             
             if search_algo==['ScaNN']:
-                index = search_algorithm(model, movies_dataset=movies, search_algo='ScaNN')
-                scores, titles = index(tf.constant([user_id]))
+                s_index = search_algorithm(model, movies_dataset=movies, search_algo='ScaNN')
+                s_scores, s_titles = s_index(tf.constant([user_id]))
                 st.write(f'Movie Recommendation for user {user_id}')
 
-                movies_list = pd.DataFrame(titles.numpy().reshape(10), columns=['Movies List'])
-                movies_list = movies_list['Movies List'].apply(extract_movie_title)
-                st.dataframe(movies_list)
+                s_movies_list = pd.DataFrame(s_titles.numpy().reshape(10), columns=['Movies List'])
+                s_movies_list = s_movies_list['Movies List'].apply(extract_movie_title)
+                st.dataframe(s_movies_list)
 
             elif search_algo==['BruteForce']:
-                index = search_algorithm(model, movies_dataset=movies, search_algo='bruteForce')
-                scores, titles = index(tf.constant([user_id]))
+                bf_index = search_algorithm(model, movies_dataset=movies, search_algo='bruteForce')
+                bf_scores, bf_titles = bf_index(tf.constant([user_id]))
                 st.write(f'Movie Recommendation for user {user_id}')
 
-                movies_list = pd.DataFrame(titles.numpy().reshape(10), columns=['Movies List'])
-                movies_list = movies_list['Movies List'].apply(extract_movie_title)
-                st.dataframe(movies_list)
+                bf_movies_list = pd.DataFrame(bf_titles.numpy().reshape(10), columns=['Movies List'])
+                bf_movies_list = bf_movies_list['Movies List'].apply(extract_movie_title)
+                st.dataframe(bf_movies_list)
             
     
     elif choice=='For New User':
