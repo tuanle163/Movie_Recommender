@@ -40,10 +40,8 @@ class MovielensModel(tfrs.models.Model):
     self.ratings = tf.keras.Sequential([
       # Learn multiple dense layers.
       tf.keras.layers.Dense(256, activation="relu"),
-      # tf.keras.layers.BatchNormalization(),
       tf.keras.layers.Dropout(0.5),
       tf.keras.layers.Dense(256, activation="relu"),
-      # tf.keras.layers.BatchNormalization(),
       tf.keras.layers.Dropout(0.5),
       tf.keras.layers.Dense(128, activation="relu"),
       tf.keras.layers.Dropout(0.5),

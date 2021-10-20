@@ -14,8 +14,10 @@ model.load_weights(model_path)
 
 ##### Save the initial number of User ID
 total_user_id = ratings_df['user_id'].unique().shape[0]
+
 ##### load the data pipeline
 cached_train, cached_test, cached_val = init_data_pipeline(train_set, test_set, val_set)
+
 #### Evaluate the model
 loaded_metrics = model.evaluate(cached_test, return_dict=True)
 
@@ -46,8 +48,6 @@ if __name__ == '__main__':
                 movies_list = pd.DataFrame(titles.numpy().reshape(10), columns=['Movies List'])
                 movies_list = movies_list['Movies List'].apply(extract_movie_title)
 
-                st.dataframe(movies_list)
-
             elif search_algo==['BruteForce']:
                 index = search_algorithm(model, movies_dataset=movies, search_algo='bruteForce')
                 scores, titles = index(tf.constant([user_id]))
@@ -55,6 +55,8 @@ if __name__ == '__main__':
 
                 movies_list = pd.DataFrame(titles.numpy().reshape(10), columns=['Movies List'])
                 movies_list = movies_list['Movies List'].apply(extract_movie_title)
+            
+            st.dataframe(movies_list)
     
     elif choice=='For New User':
         st.title('Welcome to Movie Recommenders!!!')
@@ -63,6 +65,7 @@ if __name__ == '__main__':
         st.header('Please Input Your Information')
 
         col1, col2 = st.columns(2)
+
         with col1:
             user_name = st.text_input('Please Enter your name:')
             
