@@ -48,6 +48,7 @@ if __name__ == '__main__':
 
                 s_movies_list = pd.DataFrame(s_titles.numpy().reshape(10), columns=['Movies List'])
                 s_movies_list = s_movies_list['Movies List'].apply(extract_movie_title)
+                print(s_movies_list)
                 st.dataframe(s_movies_list)
 
             elif search_algo==['BruteForce']:
@@ -57,6 +58,7 @@ if __name__ == '__main__':
 
                 bf_movies_list = pd.DataFrame(bf_titles.numpy().reshape(10), columns=['Movies List'])
                 bf_movies_list = bf_movies_list['Movies List'].apply(extract_movie_title)
+                print(bf_movies_list)
                 st.dataframe(bf_movies_list)
             
     
