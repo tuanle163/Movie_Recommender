@@ -34,14 +34,16 @@ if __name__ == '__main__':
         st.write('')
         
         user_id = st.text_input('Input User ID:')
-        search_algo = st.selectbox('Please choose the searching algorithm.', ['ScaNN','BruteForce'])
+        search_algo = st.selectbox('Please choose the searching algorithm.', ('ScaNN','BruteForce'))
 
         if user_id=='':
             st.write('Waiting for User ID input!')
         elif user_id != '':
             user_id = str(user_id)
+
+            st.write(f'You Choose: {search_algo}')
             
-            if search_algo==['ScaNN']:
+            if search_algo=='ScaNN':
                 s_index = search_algorithm(model, movies_dataset=movies, search_algo='ScaNN')
                 s_scores, s_titles = s_index(tf.constant([user_id]))
                 st.write(f'Movie Recommendation for user {user_id}')
@@ -51,7 +53,7 @@ if __name__ == '__main__':
                 print(s_movies_list)
                 st.dataframe(s_movies_list)
 
-            if search_algo==['BruteForce']:
+            if search_algo=='BruteForce':
                 bf_index = search_algorithm(model, movies_dataset=movies, search_algo='bruteForce')
                 bf_scores, bf_titles = bf_index(tf.constant([user_id]))
                 st.write(f'Movie Recommendation for user {user_id}')
