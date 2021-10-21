@@ -24,7 +24,7 @@ loaded_metrics = model.evaluate(cached_test, return_dict=True)
 side_menu = ['For Return User','For New User','About the Recommender']
 choice = st.sidebar.selectbox('For Return User', side_menu)
 
-def extract_movie_title(row):
+def clean_columns(row):
     return str(row).split('\'')[1]
 
 if __name__ == '__main__':
@@ -49,8 +49,10 @@ if __name__ == '__main__':
                 st.write(f'Movie Recommendation for user {user_id}')
 
                 s_movies_list = pd.DataFrame(s_titles.numpy().reshape(10), columns=['Movies List'])
-                s_movies_list = s_movies_list['Movies List'].apply(extract_movie_title)
-                print(s_movies_list)
+                s_movies_list['Predicted Ratings'] = pd.Series(s_scores.numpy().reshape(10))
+                s_movies_list['Movies List'] = s_movies_list['Movies List'].apply(clean_columns)
+                s_movies_list['Predicted Ratings'] = s_movies_list['Predicted Ratings'].apply(clean_columns)
+                
                 st.dataframe(s_movies_list)
 
             if search_algo=='BruteForce':
@@ -59,8 +61,10 @@ if __name__ == '__main__':
                 st.write(f'Movie Recommendation for user {user_id}')
 
                 bf_movies_list = pd.DataFrame(bf_titles.numpy().reshape(10), columns=['Movies List'])
-                bf_movies_list = bf_movies_list['Movies List'].apply(extract_movie_title)
-                print(bf_movies_list)
+                bf_movies_list['Predicted Ratings'] = pd.Series(bf_scores.numpy().reshape(10))
+                bf_movies_list = bf_movies_list['Movies List'].apply(clean_columns)
+                bf_movies_list['Predicted Ratings'] = bf_movies_list['Predicted Ratings'].apply(clean_columns)
+                
                 st.dataframe(bf_movies_list)
             
     
