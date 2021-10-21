@@ -32,6 +32,7 @@ if __name__ == '__main__':
     if choice=='For Return User':
         st.title('Hello! Welcome to Movie Recommender')
         st.write('')
+        st.image('media/movies_poster.jpeg')
         
         user_id = st.text_input('Input User ID:')
         search_algo = st.selectbox('Please choose the searching algorithm.', ('ScaNN','BruteForce'))
@@ -51,7 +52,6 @@ if __name__ == '__main__':
                 s_movies_list = pd.DataFrame(s_titles.numpy().reshape(10), columns=['Movies List'])
                 s_movies_list['Predicted Ratings'] = pd.Series(s_scores.numpy().reshape(10))
                 s_movies_list['Movies List'] = s_movies_list['Movies List'].apply(clean_columns)
-                s_movies_list['Predicted Ratings'] = s_movies_list['Predicted Ratings'].apply(clean_columns)
                 
                 st.dataframe(s_movies_list)
 
@@ -63,7 +63,6 @@ if __name__ == '__main__':
                 bf_movies_list = pd.DataFrame(bf_titles.numpy().reshape(10), columns=['Movies List'])
                 bf_movies_list['Predicted Ratings'] = pd.Series(bf_scores.numpy().reshape(10))
                 bf_movies_list = bf_movies_list['Movies List'].apply(clean_columns)
-                bf_movies_list['Predicted Ratings'] = bf_movies_list['Predicted Ratings'].apply(clean_columns)
                 
                 st.dataframe(bf_movies_list)
             
