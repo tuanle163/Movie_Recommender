@@ -62,7 +62,7 @@ if __name__ == '__main__':
 
                 bf_movies_list = pd.DataFrame(bf_titles.numpy().reshape(10), columns=['Movies List'])
                 bf_movies_list['Predicted Ratings'] = pd.Series(bf_scores.numpy().reshape(10))
-                bf_movies_list = bf_movies_list['Movies List'].apply(clean_columns)
+                bf_movies_list['Movies List'] = bf_movies_list['Movies List'].apply(clean_columns)
                 
                 st.dataframe(bf_movies_list)
             
