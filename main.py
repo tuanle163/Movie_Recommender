@@ -48,6 +48,7 @@ if __name__ == '__main__':
                 s_index = search_algorithm(model, movies_dataset=movies, search_algo='ScaNN')
                 s_scores, s_titles = s_index(tf.constant([user_id]))
                 st.write(f'Movie Recommendation for user {user_id}')
+                print(s_scores)
 
                 s_movies_list = pd.DataFrame(s_titles.numpy().reshape(10), columns=['Movies List'])
                 s_movies_list['Predicted Ratings'] = pd.Series(s_scores.numpy().reshape(10))
@@ -59,6 +60,7 @@ if __name__ == '__main__':
                 bf_index = search_algorithm(model, movies_dataset=movies, search_algo='bruteForce')
                 bf_scores, bf_titles = bf_index(tf.constant([user_id]))
                 st.write(f'Movie Recommendation for user {user_id}')
+                print(bf_scores)
 
                 bf_movies_list = pd.DataFrame(bf_titles.numpy().reshape(10), columns=['Movies List'])
                 bf_movies_list['Predicted Ratings'] = pd.Series(bf_scores.numpy().reshape(10))
